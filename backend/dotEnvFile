@@ -1,0 +1,6 @@
+DB_USER='sa'
+DB_PASSWORD='your-pwd'
+DB_SERVER='192.168.6.117'
+DB_NAME='BBClients'
+JWT_SECRET='your-random-secret-key'
+PORT='5000'

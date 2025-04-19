@@ -1,0 +1,52 @@
+version: '3'
+services:
+#  db:
+#    image: mcr.microsoft.com/mssql/server:2022-latest
+#    environment:
+#      - ACCEPT_EULA=Y
+#      - SA_PASSWORD=xxxxxx
+#      - MSSQL_PID=Developer
+#    hostname: sql2022sql1
+#    ports:
+#      - 1433:1433
+#    volumes:
+#      - sql2022volume:/var/opt/mssql
+#    container_name: sql2022sql1
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+#    depends_on:
+#      - db
+    env_file:
+      - ./backend/.env
+#    environment:
+#      - DB_USER=sa
+#      - DB_PASSWORD=xxxxxx
+#      - DB_SERVER=db  # Use the service name 'db' instead of 'localhost'
+#      - DB_NAME=MyItemsDB
+#      - JWT_SECRET=your-secret-key
+#      - PORT=5000
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+#volumes:
+#    sql2022volume:
+#        external:
+#            name: sql2022volume
+#networks: {}
+
+#MSSQL_PID Edition Options
+#The MSSQL_PID environment variable is used to set the SQL Server edition or product key. 
+#Possible values include 
+#Evaluation, Developer, Express, Web, Standard, Enterprise, and EnterpriseCore. 
+#For Enterprise, a product key must be specified in the form 
+#of #####-#####-#####-#####-#####, where '#' is a number or a letter. 
+#Enterprise isn't available for new agreements, and you should choose EnterpriseCore 
+#when you wish to deploy the Enterprise edition with no core limits.

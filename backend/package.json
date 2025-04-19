@@ -1,0 +1,16 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "src/server.js",
+    "scripts": {
+        "start": "node src/server.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.21.2",
+        "mssql": "^9.1.1",
+        "bcryptjs": "^2.4.3",  
+        "jsonwebtoken": "^9.0.0",
+        "dotenv": "^16.0.3"  
+    }
+}
