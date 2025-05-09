@@ -2,7 +2,19 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cors = require('cors'); // Add CORS middleware
 const { sql, poolPromise } = require('../config/db');
+
+// Enable CORS for http://localhost:3000
+router.use(cors({
+  origin: 'http://localhost:3000', // Allow frontend origin
+  methods: ['GET', 'POST', 'OPTIONS'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+  credentials: true // Allow cookies if needed (optional)
+}));
+
+// Handle preflight OPTIONS requests
+router.options('*', cors());
 
 router.post('/register', async (req, res) => {
   try {
